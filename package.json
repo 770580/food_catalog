@@ -6,14 +6,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server",
+    "start": "concurrently \"webpack-dev-server\" \"npm run api-server\"",
     "dev": "webpack-dashboard -t 'Marvin' -- webpack-dev-server",
     "build": "rm -rf ./build && NODE_ENV=\"production\" webpack",
     "lint-break-on-errors": "eslint ./source/js ./webpack.config.js -f table --ext .js --ext .jsx",
     "lint": "eslint ./source/js ./webpack.config.js -f table --ext .js --ext .jsx || true",
     "preview": "rm -rf ./build && NODE_ENV=\"production\" webpack-dashboard -t 'Preview Mode - Marvin' -- webpack-dev-server",
     "hook-add": "prepush install",
-    "hook-remove": "prepush remove"
+    "hook-remove": "prepush remove",
+    "api-server": "node ./server/index.js"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.3",
@@ -29,12 +30,14 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.16.0",
     "babel-runtime": "^6.6.1",
+    "concurrently": "^3.4.0",
     "css-loader": "0.14.5",
     "eslint": "^3.10.1",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.7.1",
+    "express": "^4.15.3",
     "extract-text-webpack-plugin": "^2.0.0",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.24.1",
