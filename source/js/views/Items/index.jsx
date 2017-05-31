@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import List from './List';
 
 export default class Items extends Component {
   render() {
     return (
       <div className='Items'>
-        <h1>Items</h1>
+        <List />
       </div>
     );
   }

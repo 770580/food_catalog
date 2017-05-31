@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 let data = require('./products-mock.json');
 
-app.get('/api/test', function (req, res) {
-  res.send('API server works!');
-})
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.get('/api/items', function (req, res) {
   let slicedData = {};
