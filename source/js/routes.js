@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from 'views/App';
 import Dashboard from 'views/Dashboard';
 import About from 'views/About';
+import Items from 'views/Items';
 import NotFound from 'views/NotFound';
 
 const publicPath = '/';
@@ -11,6 +12,7 @@ const publicPath = '/';
 export const routeCodes = {
   DASHBOARD: publicPath,
   ABOUT: `${ publicPath }about`,
+  ITEMS: `${ publicPath }items`,
 };
 
 export default class Routes extends Component {
@@ -21,6 +23,7 @@ export default class Routes extends Component {
           <IndexRoute component={ Dashboard } />
           <Route path={ routeCodes.DASHBOARD } component={ Dashboard } />
           <Route path={ routeCodes.ABOUT } component={ About } />
+          <Route path={ routeCodes.ITEMS } component={ Items } />
 
           <Route path='*' component={ NotFound } />
         </Route>

@@ -32,6 +32,13 @@ export default class Menu extends Component {
           <Link
             activeClassName='Menu-link--active'
             className='Menu-link'
+            to={ routeCodes.ITEMS }
+          >
+            Items
+          </Link>
+          <Link
+            activeClassName='Menu-link--active'
+            className='Menu-link'
             to='404'
           >
             404
