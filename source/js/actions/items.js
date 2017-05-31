@@ -3,6 +3,7 @@ import 'isomorphic-fetch';
 export const LIST_ASYNC_ACTION_START = 'LIST_ASYNC_ACTION_START';
 export const LIST_ASYNC_ACTION_ERROR = 'LIST_ASYNC_ACTION_ERROR';
 export const LIST_ASYNC_ACTION_SUCCESS = 'LIST_ASYNC_ACTION_SUCCESS';
+export const CHANGE_PAGE_ACTION = 'CHANGE_PAGE_ACTION';
 
 // Async action example
 
@@ -24,6 +25,13 @@ function listAsyncError(error) {
     type: LIST_ASYNC_ACTION_ERROR,
     error,
   };
+}
+
+export function changePage(direction) {
+  return {
+    type: CHANGE_PAGE_ACTION,
+    direction
+  }
 }
 
 export function getItemsAsync(params) {

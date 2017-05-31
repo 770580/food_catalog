@@ -4,6 +4,7 @@ import {
   LIST_ASYNC_ACTION_START,
   LIST_ASYNC_ACTION_ERROR,
   LIST_ASYNC_ACTION_SUCCESS,
+  CHANGE_PAGE_ACTION,
 } from 'actions/items';
 
 const initialState = Map({
@@ -33,6 +34,13 @@ const actionsMap = {
       list: action.data.items,
     });
   },
+  [CHANGE_PAGE_ACTION]: (state, action) => {
+    let newPage = action.direction === 'prev' ? state.get('page') - 1 : state.get('page') + 1;
+    if ( newPage < 0 ) { newPage = 0; }
+    return state.merge({
+      page: newPage,
+    });
+  }
 };
 
 export default function reducer(state = initialState, action = {}) {

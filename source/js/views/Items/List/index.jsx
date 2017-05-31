@@ -17,6 +17,7 @@ export default class List extends Component {
     const params = { page, count };
     dispatch(getItemsAsync(params));
   }
+
   render() {
     const { list, pending } = this.props;
     
