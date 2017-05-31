@@ -26,11 +26,12 @@ function listAsyncError(error) {
   };
 }
 
-export function getItemsAsync() {
+export function getItemsAsync(params) {
+  const { page, count } = params;
   return function (dispatch) {
     dispatch(listAsyncStart());
 
-    fetch('http://localhost:3003/api/items')
+    fetch(`http://localhost:3003/api/items?offset=${page * count}&count=${count}`)
       .then(response => response.json())
       .then(data => dispatch(listAsyncSuccess(data)))
       .catch(error => dispatch(listAsyncError(error)))

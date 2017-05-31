@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Map } from 'immutable';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getItemsAsync } from 'actions/items';
@@ -14,8 +13,9 @@ import { getItemsAsync } from 'actions/items';
 
 export default class List extends Component {
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(getItemsAsync());
+    const { dispatch, page, count } = this.props;
+    const params = { page, count };
+    dispatch(getItemsAsync(params));
   }
   render() {
     const { list, pending } = this.props;
