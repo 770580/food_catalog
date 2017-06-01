@@ -5,6 +5,7 @@ import {
   LIST_ASYNC_ACTION_ERROR,
   LIST_ASYNC_ACTION_SUCCESS,
   CHANGE_PAGE_ACTION,
+  SORT_LIST_ACTION,
 } from 'actions/items';
 
 const initialState = Map({
@@ -14,6 +15,8 @@ const initialState = Map({
   pending: false,
   asyncError: null,
   total: 0,
+  sortBy: '',
+  sortDir: '',
 });
 
 const actionsMap = {
@@ -39,6 +42,13 @@ const actionsMap = {
   [CHANGE_PAGE_ACTION]: (state, action) => {
     return state.merge({
       page: action.page,
+    });
+  },
+  [SORT_LIST_ACTION]: (state, action) => {
+    return state.merge({
+      sortBy: action.sortBy,
+      sortDir: action.sortDir,
+      page: 0
     });
   }
 };
