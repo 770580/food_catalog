@@ -5,6 +5,8 @@ export const LIST_ASYNC_ACTION_ERROR = 'LIST_ASYNC_ACTION_ERROR';
 export const LIST_ASYNC_ACTION_SUCCESS = 'LIST_ASYNC_ACTION_SUCCESS';
 export const CHANGE_PAGE_ACTION = 'CHANGE_PAGE_ACTION';
 export const SORT_LIST_ACTION = 'SORT_LIST_ACTION';
+export const SET_PRICE_FILTER_ACTION = 'SET_PRICE_FILTER_ACTION';
+export const RESET_PRICE_FILTER_ACTION = 'RESET_PRICE_FILTER_ACTION';
 
 // Async action example
 
@@ -43,13 +45,27 @@ function sortList(sortBy, sortDir) {
   };
 }
 
+function setPriceFilter(priceFrom, priceTo) {
+  return {
+    type: SET_PRICE_FILTER_ACTION,
+    priceFrom,
+    priceTo,
+  }
+}
+
+export function resetPriceFilter() {
+  return {
+    type: RESET_PRICE_FILTER_ACTION,
+  }
+}
+
 export function getItemsAsync(params) {
-  const { page, count, sortBy, sortDir } = params;
+  const { page, count, sortBy, sortDir, priceFrom, priceTo } = params;
   
   return function (dispatch) {
     dispatch(listAsyncStart());
 
-    fetch(`/api/items?offset=${page * count}&count=${count}&sortBy=${sortBy}&sortDir=${sortDir}`)
+    fetch(`/api/items?offset=${page * count}&count=${count}&sortBy=${sortBy}&sortDir=${sortDir}&priceFrom=${priceFrom}&priceTo=${priceTo}`)
       .then(response => response.json())
       .then(data => dispatch(listAsyncSuccess(data)))
       .catch(error => dispatch(listAsyncError(error)))
@@ -72,6 +88,15 @@ export function sortListAsync(params) {
     dispatch(sortList(sortBy, sortDir));
     dispatch(getItemsAsync(params));
   };
+}
+
+export function setPriceFilterAsync(params) {
+  const { priceFrom, priceTo } = params;
+
+  return (dispatch) => {
+    dispatch(setPriceFilter(priceFrom, priceTo));
+    dispatch(getItemsAsync(params));
+  }
 }
 
 // Update

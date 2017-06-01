@@ -6,6 +6,8 @@ import { changePageAsync } from 'actions/items';
   page: state.items.get('page'),
   count: state.items.get('count'),
   total: state.items.get('total'),
+  priceFrom: state.items.get('priceFrom'),
+  priceTo: state.items.get('priceTo'),
 }))
 
 export default class Paging extends Component {
@@ -36,8 +38,14 @@ export default class Paging extends Component {
   }
 
   handleChangePage(page) {
-    const { dispatch, count } = this.props;
-    const params = { page, count };
+    const { dispatch, count, priceFrom, priceTo } = this.props;
+    const params = {
+      page,
+      count,
+      priceFrom,
+      priceTo,
+    };
+
     dispatch(changePageAsync(params));
   }
 

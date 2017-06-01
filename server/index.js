@@ -40,7 +40,13 @@ app.get('/api/items', function (req, res) {
 
 
   // filtering 
-  // ...
+  let priceFrom = req.query.priceFrom;
+  let priceTo = req.query.priceTo;
+  if (priceFrom !== 'undefined' && priceTo !== 'undefined') {
+    list = list.filter(item => {
+      return item.price >= priceFrom && item.price <= priceTo;
+    });
+  }
 
   // paging
   let total = list.length;

@@ -6,6 +6,8 @@ import { sortListAsync } from 'actions/items';
   count: state.items.get('count'),
   sortBy: state.items.get('sortBy'),
   sortDir: state.items.get('sortDir'),
+  priceFrom: state.items.get('priceFrom'),
+  priceTo: state.items.get('priceTo'),
 }))
 
 export default class Sort extends Component {
@@ -19,13 +21,15 @@ export default class Sort extends Component {
   }
 
   handleSortList(sortBy) {
-    const { dispatch, count } = this.props;
+    const { dispatch, count, priceFrom, priceTo } = this.props;
     const sortDir = this.calculateSortDir(sortBy);
     const params = {
       page: 0,
       count,
       sortBy,
       sortDir,
+      priceFrom,
+      priceTo,
     }
     dispatch(sortListAsync(params));
   }
@@ -40,7 +44,6 @@ export default class Sort extends Component {
   }
 
   render() {
-    console.log(this.props.sortDir)
     const { sortBy, sortDir } = this.props;
     return (
       <div className='Sort'>

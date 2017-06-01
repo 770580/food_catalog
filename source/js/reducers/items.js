@@ -6,6 +6,8 @@ import {
   LIST_ASYNC_ACTION_SUCCESS,
   CHANGE_PAGE_ACTION,
   SORT_LIST_ACTION,
+  SET_PRICE_FILTER_ACTION,
+  RESET_PRICE_FILTER_ACTION,
 } from 'actions/items';
 
 const initialState = Map({
@@ -17,6 +19,8 @@ const initialState = Map({
   total: 0,
   sortBy: '',
   sortDir: '',
+  priceFrom: 0,
+  priceTo: Infinity,
 });
 
 const actionsMap = {
@@ -50,7 +54,22 @@ const actionsMap = {
       sortDir: action.sortDir,
       page: 0
     });
-  }
+  },
+  [SET_PRICE_FILTER_ACTION]: (state, action) => {
+    return state.merge({
+      priceFrom: action.priceFrom,
+      priceTo: action.priceTo,
+      page: 0
+    });
+  },
+  [RESET_PRICE_FILTER_ACTION]: (state, action) => {
+    return state.merge({
+      priceFrom: 0,
+      priceTo: Infinity,
+      page: 0,
+      sortBy: '',
+    })
+  },
 };
 
 export default function reducer(state = initialState, action = {}) {
