@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getItemsAsync } from 'actions/items';
 
+import Item from '../Item';
+
 @connect(state => ({
   list: state.items.get('list'),
   asyncError: state.items.get('asyncError'),
@@ -26,9 +28,17 @@ export default class List extends Component {
         {pending 
         ? <div>Loading...</div>
         : list.map(item => (
-            <div key={item.get('id')}>
-              {item.get('name')}
-            </div>
+            <Item
+              key={item.get('id')}
+              itemData={{
+                id: item.get('id'),
+                name: item.get('name'),
+                description: item.get('description'),
+                image: item.get('image'),
+                price: item.get('price'),
+                raiting: item.get('raiting')
+              }}
+            />
           ))
         }
       </div>

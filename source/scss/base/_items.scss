@@ -1,0 +1,27 @@
+.List {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Item {
+  display: flex;
+  flex-direction: column;
+	flex: 1 0 auto;
+  margin: 0 10px 20px 10px;
+  max-width: 250px;
+	height: auto;
+  font-size: 14px;
+  border: 1px solid $black;
+}
+
+.Item__card {
+  display: flex;
+  flex-direction: column;
+	flex: 1 0 auto;
+  padding: 5px;
+	height: auto;
+}
+
+.Item__description {
+  flex-grow: 1;
+}
