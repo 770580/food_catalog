@@ -9,14 +9,24 @@ app.use(function(req, res, next) {
 });
 
 app.get('/api/items', function (req, res) {
-  let slicedData = {};
-  if (req.query.offset && req.query.count) {
-    slicedData.items = data.items.slice(req.query.offset, Number(req.query.offset) + Number(req.query.count));
-  } else {
-    slicedData = data;
+  let list = data.items;
+
+  // sorting
+  // ...
+
+  // filtering 
+  // ...
+
+  // paging
+  let total = list.length;
+  let offset = Number(req.query.offset);
+  let count = Number(req.query.count);
+
+  if (offset >= 0 && count > 0) {
+    list = list.slice(offset, offset + count);
   }
 
-  setTimeout(() => (res.send(JSON.stringify(slicedData))), 500);
+  setTimeout(() => res.send({ items: list, total: total}), 500);
 })
 
 app.listen(3003, function () {

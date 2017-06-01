@@ -10,9 +10,10 @@ import {
 const initialState = Map({
   list: [],
   page: 0,
-  count: 10,
+  count: 5,
   pending: false,
   asyncError: null,
+  total: 0,
 });
 
 const actionsMap = {
@@ -32,6 +33,7 @@ const actionsMap = {
     return state.merge({
       pending: false,
       list: action.data.items,
+      total: action.data.total,
     });
   },
   [CHANGE_PAGE_ACTION]: (state, action) => {
