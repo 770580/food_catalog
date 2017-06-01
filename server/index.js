@@ -18,8 +18,8 @@ app.get('/api/items', function (req, res) {
     if (sortBy === 'name') {
       list.sort((a, b) => (
         sortDir === 'DESC'
-        ? a.name.localeCompare(b.name)
-        : b.name.localeCompare(a.name)
+        ? a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+        : b.name.toLowerCase().localeCompare(a.name.toLowerCase())
       ))
     } else if (sortBy === 'price') {
       list.sort((a, b) => (

@@ -39,3 +39,31 @@
     color: $blue-text;
   }
 }
+
+.Sort {
+  margin-bottom: 30px;
+}
+
+.Sort__title {
+  margin-right: 20px;
+}
+
+.Sort__link {
+  position: relative;
+  padding-right: 20px;
+  cursor: pointer;
+
+  &--down::after {
+    content: '\2193';
+    position: absolute;
+    top: 0;
+    right: 7px;
+  }
+
+  &--up::after {
+    content: '\2191';
+    position: absolute;
+    top: 0;
+    right: 7px;
+  }
+}

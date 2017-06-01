@@ -30,21 +30,41 @@ export default class Sort extends Component {
     dispatch(sortListAsync(params));
   }
 
+  calculateArrowStyle(orderBy) {
+    const { sortBy, sortDir } = this.props;
+    if (orderBy === sortBy) {
+      return sortDir === 'DESC' ? ' Sort__link--down' : ' Sort__link--up'
+    } else {
+      return '';
+    }
+  }
+
   render() {
+    console.log(this.props.sortDir)
+    const { sortBy, sortDir } = this.props;
     return (
       <div className='Sort'>
-        Сортировка:
+        <span className='Sort__title'>Сортировка:</span>
         <a
+          className={
+            'Sort__link' + this.calculateArrowStyle('name')
+          }
           onClick={this.handleSortList.bind(this, 'name')}
         >
           По названию
         </a>
         <a
+          className={
+            'Sort__link' + this.calculateArrowStyle('price')
+          }
           onClick={this.handleSortList.bind(this, 'price')}
         >
           По цене
         </a>
         <a
+          className={
+            'Sort__link' + this.calculateArrowStyle('raiting')
+          }
           onClick={this.handleSortList.bind(this, 'raiting')}
         >
           По рейтингу
