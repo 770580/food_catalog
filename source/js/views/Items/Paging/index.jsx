@@ -9,11 +9,30 @@ import { changePageAsync } from 'actions/items';
 }))
 
 export default class Paging extends Component {
-  constructor(props) {
-    super(props);
-    const { page, count, total } = this.props;
+
+  getPages(props) {
+    const { page, count, total } = props;
     const pagesCount = Math.floor(total / count);
-    this.pages = Array.from(Array(pagesCount).keys());
+    const space = 1;
+
+    let pages = [ { index: 0, type: 'button' } ];
+    if(page > 0 + space) { 
+      pages.push({ type: 'delimiter' });
+    }
+    for(let j = Math.max(1, page - space); j < Math.min(pagesCount - 1, page + space + 1); j++) {
+      pages.push({ index: j, type: 'button' });
+    }
+    if(page < pagesCount - space - 1) {
+      pages.push({ type: 'delimiter' });
+    }
+    pages.push({ index: pagesCount - 1, type: 'button' });
+
+    let activePage = pages.find(p => p.index === page);
+    if(activePage) {
+      activePage.active = true;
+    }
+
+    return pages;
   }
 
   handleChangePage(page) {
@@ -23,23 +42,28 @@ export default class Paging extends Component {
   }
 
   render() {
+    let pages = this.getPages(this.props);
     return (
       <div className='Paging'>
-        {this.pages.map((page, index) => (
-          <button
-            key={index}
-            className={
-              this.props.page === page
-              ? 'Paging__link Paging__link--active'
-              : 'Paging__link'
-            }
-            disabled={this.props.page === page}
-            onClick={this.handleChangePage.bind(this, page)}
-          >
-            {page + 1}
-          </button>
-        ))}
+        {
+          pages.map((item, index) => 
+            item.type === 'button' ? (
+              <button
+                key={index}
+                className={ 
+                  'Paging__link' + (item.active ? ' Paging__link--active' : '')
+                }
+                disabled={item.active}
+                onClick={this.handleChangePage.bind(this, item.index)}
+              >
+                {item.index + 1}
+              </button>
+            ) : (
+              <span key={index}>...</span>
+            )
+          )
+        }
       </div>
-    );
+    )
   }
 }

@@ -26,11 +26,6 @@
   flex-grow: 1;
 }
 
-.Paging {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .Paging__link {
   margin: 4px;
   padding: 0;
@@ -39,6 +34,7 @@
   border: 1px solid $black;
   border-radius: 4px;
   cursor: pointer;
+  outline: none;
   &--active {
     color: $blue-text;
   }
