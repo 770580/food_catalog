@@ -189,5 +189,10 @@ module.exports = {
         green: '\u001b[32m',
       },
     },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3003'
+      }
+    }
   },
 };
