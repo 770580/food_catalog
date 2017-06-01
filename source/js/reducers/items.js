@@ -37,10 +37,8 @@ const actionsMap = {
     });
   },
   [CHANGE_PAGE_ACTION]: (state, action) => {
-    let newPage = action.direction === 'prev' ? state.get('page') - 1 : state.get('page') + 1;
-    if ( newPage < 0 ) { newPage = 0; }
     return state.merge({
-      page: newPage,
+      page: action.page,
     });
   }
 };

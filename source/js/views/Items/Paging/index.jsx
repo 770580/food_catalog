@@ -1,26 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changePage } from 'actions/items';
+import { changePageAsync } from 'actions/items';
 
-@connect()
+@connect(state => ({
+  page: state.items.get('page'),
+  count: state.items.get('count'),
+  total: state.items.get('total'),
+}))
+
 export default class Paging extends Component {
-  handleChangePage(direction) {
-    const { dispatch } = this.props;
-    dispatch(changePage(direction));
+  constructor(props) {
+    super(props);
+    const { page, count, total } = this.props;
+    const pagesCount = Math.floor(total / count);
+    this.pages = Array.from(Array(pagesCount).keys());
   }
+
+  handleChangePage(page) {
+    const { dispatch, count } = this.props;
+    const params = { page, count };
+    dispatch(changePageAsync(params));
+  }
+
   render() {
     return (
       <div className='Paging'>
-        <a
-          onClick={this.handleChangePage.bind(this, 'prev')}
-        >
-          Prev
-        </a>
-        <a
-          onClick={this.handleChangePage.bind(this, 'next')}
-        >
-          Next
-        </a>
+        {this.pages.map((page, index) => (
+          <button
+            key={index}
+            className={
+              this.props.page === page
+              ? 'Paging__link Paging__link--active'
+              : 'Paging__link'
+            }
+            disabled={this.props.page === page}
+            onClick={this.handleChangePage.bind(this, page)}
+          >
+            {page + 1}
+          </button>
+        ))}
       </div>
     );
   }

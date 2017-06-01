@@ -27,10 +27,10 @@ function listAsyncError(error) {
   };
 }
 
-export function changePage(direction) {
+function changePage(page) {
   return {
     type: CHANGE_PAGE_ACTION,
-    direction
+    page
   }
 }
 
@@ -45,6 +45,15 @@ export function getItemsAsync(params) {
       .then(data => dispatch(listAsyncSuccess(data)))
       .catch(error => dispatch(listAsyncError(error)))
   };
+}
+
+export function changePageAsync(params) {
+  const { page } = params;
+
+  return (dispatch) => {
+    dispatch(changePage(page));
+    dispatch(getItemsAsync(params));
+  }
 }
 
 // Update
