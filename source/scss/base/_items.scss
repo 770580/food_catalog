@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
 	flex: 1 0 auto;
-  margin: 0 10px 20px 10px;
+  margin: 0 20px 20px 0;
   max-width: 250px;
 	height: auto;
   font-size: 14px;
@@ -66,4 +66,18 @@
     top: 0;
     right: 7px;
   }
+}
+
+.Filter {
+  margin-bottom: 20px;
+}
+
+.Filter__input {
+  margin-right: 20px;
+  width: 120px;
+  
+}
+
+.Filter__submit {
+  margin-right: 20px;
 }

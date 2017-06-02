@@ -34,10 +34,19 @@ export default class Filter extends Component {
   render() {
     return (
       <div className='Filter'>
+        <span className='Filter__title'>Цена:</span>
         <form onSubmit={this.handleSubmit}>
-          <input type='text' ref={(input) => { this.priceFrom = input; }} />
-          <input type='text' ref={(input) => { this.priceTo = input; }} />
-          <button>Go</button>
+          <input
+            type='text'
+            className='Filter__input'
+            ref={(input) => { this.priceFrom = input; }}
+          />
+          <input
+            type='text'
+            className='Filter__input'
+            ref={(input) => { this.priceTo = input; }}
+          />
+          <button className='Filter__submit'>Go</button>
           <a onClick={this.resetFilter}>
             Reset
           </a>
