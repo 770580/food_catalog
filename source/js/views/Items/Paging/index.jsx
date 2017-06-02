@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changePageAsync } from 'actions/items';
+import { setPage } from 'actions/items';
 
 @connect(state => ({
   page: state.items.get('page'),
   count: state.items.get('count'),
   total: state.items.get('total'),
-  priceFrom: state.items.get('priceFrom'),
-  priceTo: state.items.get('priceTo'),
 }))
 
 export default class Paging extends Component {
@@ -38,15 +36,10 @@ export default class Paging extends Component {
   }
 
   handleChangePage(page) {
-    const { dispatch, count, priceFrom, priceTo } = this.props;
-    const params = {
-      page,
-      count,
-      priceFrom,
-      priceTo,
-    };
+    const { dispatch, getItems } = this.props;
 
-    dispatch(changePageAsync(params));
+    dispatch(setPage(page));
+    getItems({ page });
   }
 
   render() {

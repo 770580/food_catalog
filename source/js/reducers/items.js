@@ -4,8 +4,8 @@ import {
   LIST_ASYNC_ACTION_START,
   LIST_ASYNC_ACTION_ERROR,
   LIST_ASYNC_ACTION_SUCCESS,
-  CHANGE_PAGE_ACTION,
-  SORT_LIST_ACTION,
+  SET_PAGE_ACTION,
+  SET_SORT_ACTION,
   SET_PRICE_FILTER_ACTION,
   RESET_PRICE_FILTER_ACTION,
 } from 'actions/items';
@@ -43,12 +43,12 @@ const actionsMap = {
       total: action.data.total,
     });
   },
-  [CHANGE_PAGE_ACTION]: (state, action) => {
+  [SET_PAGE_ACTION]: (state, action) => {
     return state.merge({
       page: action.page,
     });
   },
-  [SORT_LIST_ACTION]: (state, action) => {
+  [SET_SORT_ACTION]: (state, action) => {
     return state.merge({
       sortBy: action.sortBy,
       sortDir: action.sortDir,

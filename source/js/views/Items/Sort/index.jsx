@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { sortListAsync } from 'actions/items';
+import { setSort } from 'actions/items';
 
 @connect(state => ({
-  count: state.items.get('count'),
   sortBy: state.items.get('sortBy'),
   sortDir: state.items.get('sortDir'),
-  priceFrom: state.items.get('priceFrom'),
-  priceTo: state.items.get('priceTo'),
 }))
 
 export default class Sort extends Component {
-
   calculateSortDir(sortBy) {
     let sortDir = 'DESC';
     if (this.props.sortBy === sortBy) {
@@ -21,17 +17,11 @@ export default class Sort extends Component {
   }
 
   handleSortList(sortBy) {
-    const { dispatch, count, priceFrom, priceTo } = this.props;
+    const { dispatch, getItems } = this.props;
     const sortDir = this.calculateSortDir(sortBy);
-    const params = {
-      page: 0,
-      count,
-      sortBy,
-      sortDir,
-      priceFrom,
-      priceTo,
-    }
-    dispatch(sortListAsync(params));
+  
+    dispatch(setSort(sortBy, sortDir));
+    getItems({ page: 0, sortBy, sortDir });
   }
 
   calculateArrowStyle(orderBy) {

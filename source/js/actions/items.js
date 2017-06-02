@@ -3,8 +3,8 @@ import 'isomorphic-fetch';
 export const LIST_ASYNC_ACTION_START = 'LIST_ASYNC_ACTION_START';
 export const LIST_ASYNC_ACTION_ERROR = 'LIST_ASYNC_ACTION_ERROR';
 export const LIST_ASYNC_ACTION_SUCCESS = 'LIST_ASYNC_ACTION_SUCCESS';
-export const CHANGE_PAGE_ACTION = 'CHANGE_PAGE_ACTION';
-export const SORT_LIST_ACTION = 'SORT_LIST_ACTION';
+export const SET_PAGE_ACTION = 'SET_PAGE_ACTION';
+export const SET_SORT_ACTION = 'SET_SORT_ACTION';
 export const SET_PRICE_FILTER_ACTION = 'SET_PRICE_FILTER_ACTION';
 export const RESET_PRICE_FILTER_ACTION = 'RESET_PRICE_FILTER_ACTION';
 
@@ -30,22 +30,22 @@ function listAsyncError(error) {
   };
 }
 
-function changePage(page) {
+export function setPage(page) {
   return {
-    type: CHANGE_PAGE_ACTION,
+    type: SET_PAGE_ACTION,
     page
   };
 }
 
-function sortList(sortBy, sortDir) {
+export function setSort(sortBy, sortDir) {
   return {
-    type: SORT_LIST_ACTION,
+    type: SET_SORT_ACTION,
     sortBy,
     sortDir,
   };
 }
 
-function setPriceFilter(priceFrom, priceTo) {
+export function setPriceFilter(priceFrom, priceTo) {
   return {
     type: SET_PRICE_FILTER_ACTION,
     priceFrom,
@@ -64,39 +64,43 @@ export function getItemsAsync(params) {
   
   return function (dispatch) {
     dispatch(listAsyncStart());
+    let fetchParams = '';
+    fetchParams += (page >= 0 && count > 0) ? `&offset=${page * count}&count=${count}` : ``;
+    fetchParams += (sortBy && sortDir) ? `&sortBy=${sortBy}&sortDir=${sortDir}` : ``;
+    fetchParams += (priceFrom >=0 && priceTo > 0) ? `&priceFrom=${priceFrom}&priceTo=${priceTo}` : ``; 
 
-    fetch(`/api/items?offset=${page * count}&count=${count}&sortBy=${sortBy}&sortDir=${sortDir}&priceFrom=${priceFrom}&priceTo=${priceTo}`)
+    fetch(`/api/items?${fetchParams}`)
       .then(response => response.json())
       .then(data => dispatch(listAsyncSuccess(data)))
       .catch(error => dispatch(listAsyncError(error)))
   };
 }
 
-export function changePageAsync(params) {
-  const { page } = params;
+// export function changePageAsync(params) {
+//   const { page } = params;
 
-  return (dispatch) => {
-    dispatch(changePage(page));
-    dispatch(getItemsAsync(params));
-  };
-}
+//   return (dispatch) => {
+//     dispatch(changePage(page));
+//     dispatch(getItemsAsync(params));
+//   };
+// }
 
-export function sortListAsync(params) {
-  const { sortBy, sortDir } = params;
+// export function sortListAsync(params) {
+//   const { sortBy, sortDir } = params;
 
-  return (dispatch) => {
-    dispatch(sortList(sortBy, sortDir));
-    dispatch(getItemsAsync(params));
-  };
-}
+//   return (dispatch) => {
+//     dispatch(sortList(sortBy, sortDir));
+//     dispatch(getItemsAsync(params));
+//   };
+// }
 
-export function setPriceFilterAsync(params) {
-  const { priceFrom, priceTo } = params;
+// export function setPriceFilterAsync(params) {
+//   const { priceFrom, priceTo } = params;
 
-  return (dispatch) => {
-    dispatch(setPriceFilter(priceFrom, priceTo));
-    dispatch(getItemsAsync(params));
-  }
-}
+//   return (dispatch) => {
+//     dispatch(setPriceFilter(priceFrom, priceTo));
+//     dispatch(getItemsAsync(params));
+//   }
+// }
 
 // Update

@@ -14,12 +14,6 @@ import Item from '../Item';
 }))
 
 export default class List extends Component {
-  componentDidMount() {
-    const { dispatch, page, count } = this.props;
-    const params = { page, count };
-    dispatch(getItemsAsync(params));
-  }
-
   render() {
     const { list, pending } = this.props;
     

@@ -1,48 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setPriceFilterAsync, resetPriceFilter, getItemsAsync } from 'actions/items';
+import { setPriceFilter, resetPriceFilter } from 'actions/items';
 
 @connect(state => ({
-  count: state.items.get('count'),
   sortBy: state.items.get('sortBy'),
   sortDir: state.items.get('sortDir'),
 }))
 export default class Filter extends Component {
+  constructor() {
+    super();
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.resetFilter = this.resetFilter.bind(this)
+  }
 
   handleSubmit(event) {
     event.preventDefault();
-    const { dispatch, count, sortBy, sortDir } = this.props;
-    const params = {
-      page: 0,
-      priceFrom: Number(this.priceFrom.value),
-      priceTo: Number(this.priceTo.value),
-      count,
-      sortBy,
-      sortDir,
-    }
-    dispatch(setPriceFilterAsync(params));
+    const { dispatch, getItems } = this.props;
+    const priceFrom = Number(this.priceFrom.value);
+    const priceTo = Number(this.priceTo.value);
+    
+    dispatch(setPriceFilter(priceFrom, priceTo));
+    getItems({ priceFrom, priceTo, page: 0 });
   }
 
   resetFilter() {
-    const { dispatch, count } = this.props;
+    const { dispatch, getItems } = this.props;
     this.priceFrom.value = '';
     this.priceTo.value = '';
     dispatch(resetPriceFilter());
-    const params = {
-      page: 0,
-      count,
-    }
-    dispatch(getItemsAsync(params));
+    getItems();
   }
 
   render() {
     return (
       <div className='Filter'>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit}>
           <input type='text' ref={(input) => { this.priceFrom = input; }} />
           <input type='text' ref={(input) => { this.priceTo = input; }} />
           <button>Go</button>
-          <a onClick={this.resetFilter.bind(this)}>
+          <a onClick={this.resetFilter}>
             Reset
           </a>
         </form>
