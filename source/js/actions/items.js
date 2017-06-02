@@ -75,32 +75,3 @@ export function getItemsAsync(params) {
       .catch(error => dispatch(listAsyncError(error)))
   };
 }
-
-// export function changePageAsync(params) {
-//   const { page } = params;
-
-//   return (dispatch) => {
-//     dispatch(changePage(page));
-//     dispatch(getItemsAsync(params));
-//   };
-// }
-
-// export function sortListAsync(params) {
-//   const { sortBy, sortDir } = params;
-
-//   return (dispatch) => {
-//     dispatch(sortList(sortBy, sortDir));
-//     dispatch(getItemsAsync(params));
-//   };
-// }
-
-// export function setPriceFilterAsync(params) {
-//   const { priceFrom, priceTo } = params;
-
-//   return (dispatch) => {
-//     dispatch(setPriceFilter(priceFrom, priceTo));
-//     dispatch(getItemsAsync(params));
-//   }
-// }
-
-// Update
