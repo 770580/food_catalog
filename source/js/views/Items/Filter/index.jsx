@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setPriceFilter, resetPriceFilter } from 'actions/items';
 
-@connect(state => ({
-  sortBy: state.items.get('sortBy'),
-  sortDir: state.items.get('sortDir'),
-}))
+@connect()
 export default class Filter extends Component {
   constructor() {
     super();
