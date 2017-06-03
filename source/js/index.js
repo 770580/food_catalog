@@ -23,7 +23,7 @@ if (isProduction) {
 
   store = createStore(
     rootReducer,
-    middleware
+    middleware,
   );
 } else {
   // In development mode beside thunk
@@ -44,14 +44,14 @@ if (isProduction) {
 
   store = createStore(
     rootReducer,
-    enhancer
+    enhancer,
   );
 }
 
 
 // Render it to DOM
 ReactDOM.render(
-  <Provider store={ store }>
+  <Provider store={store}>
     <Routes />
   </Provider>,
   document.getElementById('root')

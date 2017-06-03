@@ -9,18 +9,18 @@ const publicPath = '/';
 
 export const routeCodes = {
   ITEMS: publicPath,
-  ABOUT: `${ publicPath }about`,
+  ABOUT: `${publicPath}about`,
 };
 
 export default class Routes extends Component {
   render() {
     return (
-      <Router history={ browserHistory }>
-        <Route path={ publicPath } component={ App }>
-          <IndexRoute component={ Items } />
-          <Route path={ routeCodes.ITEMS } component={ Items } />
+      <Router history={browserHistory}>
+        <Route path={publicPath} component={App}>
+          <IndexRoute component={Items} />
+          <Route path={routeCodes.ITEMS} component={Items} />
 
-          <Route path='*' component={ NotFound } />
+          <Route path='*' component={NotFound} />
         </Route>
       </Router>
     );

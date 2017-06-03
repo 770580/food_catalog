@@ -33,7 +33,7 @@ function listAsyncError(error) {
 export function setPage(page) {
   return {
     type: SET_PAGE_ACTION,
-    page
+    page,
   };
 }
 
@@ -50,24 +50,24 @@ export function setPriceFilter(priceFrom, priceTo) {
     type: SET_PRICE_FILTER_ACTION,
     priceFrom,
     priceTo,
-  }
+  };
 }
 
 export function resetPriceFilter() {
   return {
     type: RESET_PRICE_FILTER_ACTION,
-  }
+  };
 }
 
 export function getItemsAsync(params) {
   const { page, count, sortBy, sortDir, priceFrom, priceTo } = params;
-  
+
   return function (dispatch) {
     dispatch(listAsyncStart());
     let fetchParams = '';
-    fetchParams += (page >= 0 && count > 0) ? `&offset=${page * count}&count=${count}` : ``;
-    fetchParams += (sortBy && sortDir) ? `&sortBy=${sortBy}&sortDir=${sortDir}` : ``;
-    fetchParams += (priceFrom >=0 && priceTo > 0) ? `&priceFrom=${priceFrom}&priceTo=${priceTo}` : ``; 
+    fetchParams += (page >= 0 && count > 0) ? `&offset=${page * count}&count=${count}` : '';
+    fetchParams += (sortBy && sortDir) ? `&sortBy=${sortBy}&sortDir=${sortDir}` : '';
+    fetchParams += (priceFrom >= 0 && priceTo > 0) ? `&priceFrom=${priceFrom}&priceTo=${priceTo}` : ''; 
 
     fetch(`/api/items?${fetchParams}`)
       .then(response => response.json())

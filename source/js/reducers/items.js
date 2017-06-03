@@ -52,23 +52,23 @@ const actionsMap = {
     return state.merge({
       sortBy: action.sortBy,
       sortDir: action.sortDir,
-      page: 0
+      page: 0,
     });
   },
   [SET_PRICE_FILTER_ACTION]: (state, action) => {
     return state.merge({
       priceFrom: action.priceFrom,
       priceTo: action.priceTo,
-      page: 0
+      page: 0,
     });
   },
-  [RESET_PRICE_FILTER_ACTION]: (state, action) => {
+  [RESET_PRICE_FILTER_ACTION]: (state) => {
     return state.merge({
       priceFrom: 0,
       priceTo: Infinity,
       page: 0,
       sortBy: '',
-    })
+    });
   },
 };
 

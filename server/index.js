@@ -19,7 +19,7 @@ app.get('/api/items', function (req, res) {
     list = list.filter(item => {
       return item.price >= priceFrom && item.price <= priceTo;
     });
-  filtered = true;
+    filtered = true;
   }
 
   // sorting
@@ -32,19 +32,19 @@ app.get('/api/items', function (req, res) {
         sortDir === 'DESC'
         ? a.name.toLowerCase().localeCompare(b.name.toLowerCase())
         : b.name.toLowerCase().localeCompare(a.name.toLowerCase())
-      ))
+      ));
     } else if (sortBy === 'price') {
       list.sort((a, b) => (
         sortDir === 'DESC'
         ? a.price - b.price
         : b.price - a.price
-      ))
+      ));
     } else {
       list.sort((a, b) => (
         sortDir === 'DESC'
         ? b.raiting - a.raiting
         : a.raiting - b.raiting
-      ))
+      ));
     }
   }
 
@@ -57,7 +57,7 @@ app.get('/api/items', function (req, res) {
     list = list.slice(offset, offset + count);
   }
 
-  setTimeout(() => res.send({ items: list, total: total}), 500);
+  setTimeout(() => res.send({ items: list, total}), 500);
 })
 
 app.listen(3003, function () {
