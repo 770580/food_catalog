@@ -19,9 +19,10 @@ export default class List extends Component {
     
     return (
       <div className='List'>
-        {pending 
-        ? <div>Loading...</div>
-        : list.map(item => (
+        {pending &&
+          <div className='List__pending' />
+        }
+        {list.map(item => (
             <Item
               key={item.get('id')}
               itemData={{

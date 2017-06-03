@@ -67,11 +67,11 @@ export function getItemsAsync(params) {
     let fetchParams = '';
     fetchParams += (page >= 0 && count > 0) ? `&offset=${page * count}&count=${count}` : '';
     fetchParams += (sortBy && sortDir) ? `&sortBy=${sortBy}&sortDir=${sortDir}` : '';
-    fetchParams += (priceFrom >= 0 && priceTo > 0) ? `&priceFrom=${priceFrom}&priceTo=${priceTo}` : ''; 
+    fetchParams += (priceFrom >= 0 && priceTo > 0) ? `&priceFrom=${priceFrom}&priceTo=${priceTo}` : '';
 
     fetch(`/api/items?${fetchParams}`)
       .then(response => response.json())
       .then(data => dispatch(listAsyncSuccess(data)))
-      .catch(error => dispatch(listAsyncError(error)))
+      .catch(error => dispatch(listAsyncError(error)));
   };
 }
