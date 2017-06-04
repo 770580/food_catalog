@@ -9,6 +9,10 @@ import { setPage } from 'actions/items';
 }))
 
 export default class Paging extends Component {
+  constructor() {
+    super();
+    this.handleChangePage = this.handleChangePage.bind(this);
+  }
 
   getPages(props) {
     const { page, count, total } = props;
@@ -55,7 +59,7 @@ export default class Paging extends Component {
                   'Paging__link' + (item.active ? ' Paging__link--active' : '')
                 }
                 disabled={item.active}
-                onClick={this.handleChangePage.bind(this, item.index)}
+                onClick={() => this.handleChangePage(item.index)}
               >
                 {item.index + 1}
               </button>

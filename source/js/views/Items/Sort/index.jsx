@@ -8,6 +8,11 @@ import { setSort } from 'actions/items';
 }))
 
 export default class Sort extends Component {
+  constructor() {
+    super();
+    this.handleSortList = this.handleSortList.bind(this);
+  }
+
   calculateSortDir(sortBy) {
     let sortDir = 'DESC';
     if (this.props.sortBy === sortBy) {
@@ -42,7 +47,7 @@ export default class Sort extends Component {
           className={
             'Sort__link' + this.calculateArrowStyle('name')
           }
-          onClick={this.handleSortList.bind(this, 'name')}
+          onClick={() => this.handleSortList('name')}
         >
           По названию
         </a>
@@ -50,7 +55,7 @@ export default class Sort extends Component {
           className={
             'Sort__link' + this.calculateArrowStyle('price')
           }
-          onClick={this.handleSortList.bind(this, 'price')}
+          onClick={() => this.handleSortList('price')}
         >
           По цене
         </a>
@@ -58,7 +63,7 @@ export default class Sort extends Component {
           className={
             'Sort__link' + this.calculateArrowStyle('raiting')
           }
-          onClick={this.handleSortList.bind(this, 'raiting')}
+          onClick={() => this.handleSortList('raiting')}
         >
           По рейтингу
         </a>
