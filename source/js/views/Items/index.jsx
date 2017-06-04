@@ -5,7 +5,7 @@ import List from './List';
 import Paging from './Paging';
 import Sort from './Sort';
 import Filter from './Filter';
-
+import PagingButton from './PagingButton';
 
 @connect(state => ({
   total: state.items.get('total'),
@@ -58,7 +58,11 @@ export default class Items extends Component {
       <div className='Items'>
         <Sort getItems={this.getItems} />
         <Filter getItems={this.getItems} />
-        <List getItems={this.getItems} />
+        <div className='Items__carousel'>
+          <PagingButton getItems={this.getItems} nextPage='prev' />
+          <List getItems={this.getItems} />
+          <PagingButton getItems={this.getItems} nextPage='next' />
+        </div>
         {total > 0 &&
           <Paging getItems={this.getItems} />
         }

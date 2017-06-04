@@ -1,5 +1,12 @@
+.Items__carousel {
+  display: flex;
+}
+
 .List {
   position: relative;
+  flex: 1 1 auto;
+  margin: 0 20px 20px 20px;
+  overflow: hidden;
 }
 
 .List__items {
@@ -97,4 +104,13 @@
 
 .Filter__submit {
   margin-right: 20px;
+}
+
+.PagingButton {
+  margin-bottom: 40px;
+}
+
+.PagingButton__button {
+  height: 100%;
+  outline: none;
 }
