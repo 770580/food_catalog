@@ -1,20 +1,26 @@
 .List {
   position: relative;
+}
+
+.List__items {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
 }
 
 .List__pending {
   position: absolute;
-  top: 50%;
+  top: 20px;
   left: 50%;
+  z-index: 3;
   width: 120px;
   height: 120px;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   background-image: url(../assets/img/loader.gif);
 }
 
 .Item {
+  position: relative;
   display: flex;
   flex-direction: column;
 	flex: 1 0 auto;

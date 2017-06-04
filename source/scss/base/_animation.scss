@@ -1,0 +1,36 @@
+// List items
+.ListNextPage-enter {
+  left: -100vw;
+}
+
+.ListNextPage-enter.ListNextPage-enter-active {
+  left: 0;
+  transition: all 500ms ease;
+}
+
+.ListNextPage-leave {
+  left: 0;
+}
+
+.ListNextPage-leave.ListNextPage-leave-active {
+  left: 100vw;
+  transition: all 500ms ease;
+}
+
+.ListPrevPage-enter {
+  right: -100vw;
+}
+
+.ListPrevPage-enter.ListPrevPage-enter-active {
+  right: 0;
+  transition: all 500ms ease;
+}
+
+.ListPrevPage-leave {
+  right: 0;
+}
+
+.ListPrevPage-leave.ListPrevPage-leave-active {
+  right: 100vw;
+  transition: all 500ms ease;
+}
