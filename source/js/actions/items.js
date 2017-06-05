@@ -5,8 +5,7 @@ export const LIST_ASYNC_ACTION_ERROR = 'LIST_ASYNC_ACTION_ERROR';
 export const LIST_ASYNC_ACTION_SUCCESS = 'LIST_ASYNC_ACTION_SUCCESS';
 export const SET_PAGE_ACTION = 'SET_PAGE_ACTION';
 export const SET_SORT_ACTION = 'SET_SORT_ACTION';
-export const SET_PRICE_FILTER_ACTION = 'SET_PRICE_FILTER_ACTION';
-export const RESET_PRICE_FILTER_ACTION = 'RESET_PRICE_FILTER_ACTION';
+export const ON_PRICE_FILTER_CHANGED = 'ON_PRICE_FILTER_CHANGED';
 
 // Async action example
 
@@ -45,18 +44,12 @@ export function setSort(sortBy, sortDir) {
   };
 }
 
-export function setPriceFilter(priceFrom, priceTo) {
+export function onPriceFilterInputChanged(priceFrom, priceTo) {
   return {
-    type: SET_PRICE_FILTER_ACTION,
+    type: ON_PRICE_FILTER_CHANGED,
     priceFrom,
     priceTo,
-  };
-}
-
-export function resetPriceFilter() {
-  return {
-    type: RESET_PRICE_FILTER_ACTION,
-  };
+  }
 }
 
 export function getItemsAsync(params) {

@@ -6,8 +6,7 @@ import {
   LIST_ASYNC_ACTION_SUCCESS,
   SET_PAGE_ACTION,
   SET_SORT_ACTION,
-  SET_PRICE_FILTER_ACTION,
-  RESET_PRICE_FILTER_ACTION,
+  ON_PRICE_FILTER_CHANGED,
 } from 'actions/items';
 
 const initialState = Map({
@@ -55,19 +54,10 @@ const actionsMap = {
       page: 0,
     });
   },
-  [SET_PRICE_FILTER_ACTION]: (state, action) => {
+  [ON_PRICE_FILTER_CHANGED]: (state, action) => {
     return state.merge({
       priceFrom: action.priceFrom,
       priceTo: action.priceTo,
-      page: 0,
-    });
-  },
-  [RESET_PRICE_FILTER_ACTION]: (state) => {
-    return state.merge({
-      priceFrom: 0,
-      priceTo: Infinity,
-      page: 0,
-      sortBy: '',
     });
   },
 };
