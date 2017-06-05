@@ -20,6 +20,7 @@ const initialState = Map({
   sortDir: '',
   priceFrom: 0,
   priceTo: Infinity,
+  transitionName: '',
 });
 
 const actionsMap = {
@@ -43,8 +44,10 @@ const actionsMap = {
     });
   },
   [SET_PAGE_ACTION]: (state, action) => {
+    const transitionName = state.get('page') > action.page ? 'ListNextPage' : 'ListPrevPage';
     return state.merge({
       page: action.page,
+      transitionName,
     });
   },
   [SET_SORT_ACTION]: (state, action) => {
@@ -52,12 +55,14 @@ const actionsMap = {
       sortBy: action.sortBy,
       sortDir: action.sortDir,
       page: 0,
+      transitionName: '',
     });
   },
   [ON_PRICE_FILTER_CHANGED]: (state, action) => {
     return state.merge({
       priceFrom: action.priceFrom,
       priceTo: action.priceTo,
+      transitionName: '',
     });
   },
 };
