@@ -14,29 +14,24 @@ export default class PagingButton extends Component {
     this.handleChangePage = this.handleChangePage.bind(this);
   }
 
-  handleChangePage(page) {
-    const { dispatch, getItems } = this.props;
+  handleChangePage() {
+    const { dispatch, getItems, page, nextPage } = this.props;
+    const nextPageNumber = nextPage === 'next' ? page + 1 : page - 1;
 
-    dispatch(setPage(page));
-    getItems({ page });
-  }
-
-  getNextPageNumber() {
-    const { page, nextPage } = this.props;
-    return nextPage === 'next' ? page + 1 : page - 1;
+    dispatch(setPage(nextPageNumber));
+    getItems({ page: nextPageNumber });
   }
 
   render() {
     const { nextPage, total, count, page } = this.props;
 
-    const nextPageNumber = this.getNextPageNumber();
     const lastPage = Math.floor(total / count) - 1;
     return (
       <div className='PagingButton'>
         <button
           className='PagingButton__button'
           disabled={(page === 0 && nextPage === 'prev') || (page === lastPage && nextPage === 'next')}
-          onClick={() => this.handleChangePage(nextPageNumber)}
+          onClick={this.handleChangePage}
         >
           {nextPage === 'next' ? '\u003E' : '\u003C'}
         </button>
