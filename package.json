@@ -1,5 +1,5 @@
 {
-  "name": "react-redux-webpack2-boilerplate",
+  "name": "food-catalog",
   "version": "0.1.6",
   "private": false,
   "license": "MIT",
@@ -69,22 +69,18 @@
     "redux": "^3.3.1",
     "redux-thunk": "^2.0.1"
   },
-  "description": "Starter boilerplate for React and Redux, using Webpack 2",
+  "description": "Food catalog",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Stanko/react-redux-webpack2-boilerplate.git"
+    "url": "git+ssh://git@github.com:770580/food_catalog.git"
   },
   "keywords": [
     "react",
     "redux",
-    "webpack2",
-    "boilerplate"
+    "webpack2"
   ],
-  "author": "Stanko",
-  "bugs": {
-    "url": "https://github.com/Stanko/react-redux-webpack2-boilerplate/issues"
-  },
-  "homepage": "https://github.com/Stanko/react-redux-webpack2-boilerplate#readme",
+  "author": "Anton",
+  "homepage": "https://github.com/770580/food_catalog",
   "prepush": [
     "npm run lint-break-on-errors --silent"
   ]
