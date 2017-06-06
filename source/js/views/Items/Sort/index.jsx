@@ -22,11 +22,10 @@ export default class Sort extends Component {
   }
 
   handleSortList(sortBy) {
-    const { dispatch, getItems } = this.props;
+    const { dispatch } = this.props;
     const sortDir = this.calculateSortDir(sortBy);
   
     dispatch(setSort(sortBy, sortDir));
-    getItems({ page: 0, sortBy, sortDir });
   }
 
   calculateArrowStyle(orderBy) {

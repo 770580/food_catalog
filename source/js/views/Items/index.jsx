@@ -9,62 +9,27 @@ import PagingButton from './PagingButton';
 
 @connect(state => ({
   total: state.items.get('total'),
-  page: state.items.get('page'),
-  count: state.items.get('count'),
-  sortBy: state.items.get('sortBy'),
-  sortDir: state.items.get('sortDir'),
-  priceFrom: state.items.get('priceFrom'),
-  priceTo: state.items.get('priceTo'),
 }))
 
 export default class Items extends Component {
-  constructor() {
-    super();
-    this.getItems = this.getItems.bind(this);
-  }
-
   componentDidMount() {
-    this.getItems();
-  }
-
-  getItems(additionalParams = {}) {
-    const {
-      dispatch,
-      page,
-      count,
-      sortBy,
-      sortDir,
-      priceFrom,
-      priceTo
-    } = this.props;
-
-    let params = {
-      page,
-      count,
-      sortBy,
-      sortDir,
-      priceFrom,
-      priceTo
-    }
-    
-    params = Object.assign(params, additionalParams);
-
-    dispatch(getItemsAsync(params))
+    const { dispatch } = this.props;
+    dispatch(getItemsAsync());
   }
 
   render() {
     const { total } = this.props
     return (
       <div className='Items'>
-        <Sort getItems={this.getItems} />
-        <Filter getItems={this.getItems} />
+        <Sort />
+        <Filter />
         <div className='Items__carousel'>
-          <PagingButton getItems={this.getItems} nextPage='prev' />
-          <List getItems={this.getItems} />
-          <PagingButton getItems={this.getItems} nextPage='next' />
+          <PagingButton nextPage='prev' />
+          <List />
+          <PagingButton nextPage='next' />
         </div>
         {total > 0 &&
-          <Paging getItems={this.getItems} />
+          <Paging />
         }
       </div>
     );

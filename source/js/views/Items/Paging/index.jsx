@@ -40,10 +40,8 @@ export default class Paging extends Component {
   }
 
   handleChangePage(page) {
-    const { dispatch, getItems } = this.props;
-
+    const { dispatch } = this.props;
     dispatch(setPage(page));
-    getItems({ page });
   }
 
   render() {

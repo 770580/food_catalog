@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { onPriceFilterInputChanged } from 'actions/items';
+import { onPriceFilterInputChanged, setFilter } from 'actions/items';
 
 @connect(state => ({
   priceFrom: state.items.get('priceFrom'),
@@ -16,16 +16,16 @@ export default class Filter extends Component {
   }
 
   handleSubmit(event) {
-    const { dispatch, getItems, priceFrom, priceTo } = this.props
+    const { dispatch } = this.props
     event.preventDefault()
-    getItems({ priceFrom, priceTo, page: 0 })
+    dispatch(setFilter());
   }
 
   resetFilter() {
-    const { dispatch, getItems } = this.props;
+    const { dispatch } = this.props;
     const priceFrom = '', priceTo = '';
     dispatch(onPriceFilterInputChanged(priceFrom, priceTo));
-    getItems({ priceFrom, priceTo, page: 0 });
+    dispatch(setFilter());
   }
 
   onPriceFromInputChanged(event) {
@@ -47,11 +47,13 @@ export default class Filter extends Component {
           <input
             type='text'
             className='Filter__input'
+            value={priceFrom}
             onChange={this.onPriceFromInputChanged}
           />
           <input
             type='text'
             className='Filter__input'
+            value={priceTo}
             onChange={this.onPriceToInputChanged}
           />
           <button className='Filter__submit'>Go</button>

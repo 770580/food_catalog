@@ -18,6 +18,13 @@ export default class Menu extends Component {
           <Link
             activeClassName='Menu-link--active'
             className='Menu-link'
+            to={ routeCodes.CHANGE_LOG}
+          >
+            Changelog
+          </Link>
+          <Link
+            activeClassName='Menu-link--active'
+            className='Menu-link'
             to='404'
           >
             404

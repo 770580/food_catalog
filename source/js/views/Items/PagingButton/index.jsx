@@ -15,11 +15,10 @@ export default class PagingButton extends Component {
   }
 
   handleChangePage() {
-    const { dispatch, getItems, page, nextPage } = this.props;
+    const { dispatch, page, nextPage } = this.props;
     const nextPageNumber = nextPage === 'next' ? page + 1 : page - 1;
 
     dispatch(setPage(nextPageNumber));
-    getItems({ page: nextPageNumber });
   }
 
   render() {
