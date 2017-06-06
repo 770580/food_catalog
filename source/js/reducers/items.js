@@ -66,6 +66,8 @@ const actionsMap = {
   [SET_FILTER_ACTION]: (state, action) => {
     return state.merge({
       transitionName: action.transitionName,
+      priceFrom: action.priceFrom,
+      priceTo: action.priceTo,
       page: action.page,
     });
   },

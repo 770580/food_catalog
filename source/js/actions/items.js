@@ -88,10 +88,12 @@ export function onPriceFilterInputChanged(priceFrom, priceTo) {
   };
 }
 
-export function setFilter() {
+export function setFilter(priceFrom, priceTo) {
   return (dispatch) => {
     dispatch({
       type: SET_FILTER_ACTION,
+      priceFrom,
+      priceTo,
       page: 0,
       transitionName: '',
     });

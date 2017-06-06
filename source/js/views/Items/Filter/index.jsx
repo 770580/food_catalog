@@ -16,16 +16,15 @@ export default class Filter extends Component {
   }
 
   handleSubmit(event) {
-    const { dispatch } = this.props
-    event.preventDefault()
-    dispatch(setFilter());
+    const { dispatch, priceFrom, priceTo } = this.props;
+    event.preventDefault();
+    dispatch(setFilter(priceFrom, priceTo));
   }
 
   resetFilter() {
     const { dispatch } = this.props;
     const priceFrom = '', priceTo = '';
-    dispatch(onPriceFilterInputChanged(priceFrom, priceTo));
-    dispatch(setFilter());
+    dispatch(setFilter(priceFrom, priceTo));
   }
 
   onPriceFromInputChanged(event) {
