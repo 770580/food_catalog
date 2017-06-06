@@ -19,8 +19,8 @@ const initialState = Map({
   total: 0,
   sortBy: '',
   sortDir: '',
-  priceFrom: 0,
-  priceTo: Infinity,
+  priceFrom: '',
+  priceTo: '',
   transitionName: '',
 });
 
