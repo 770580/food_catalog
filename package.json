@@ -1,6 +1,6 @@
 {
   "name": "food-catalog",
-  "version": "0.1.6",
+  "version": "0.0.3",
   "private": false,
   "license": "MIT",
   "main": "index.js",

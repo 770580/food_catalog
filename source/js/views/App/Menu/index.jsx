@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { IndexLink, Link } from 'react-router';
-import { routeCodes } from '../../routes';
+import { routeCodes } from '../../../routes';
 
 export default class Menu extends Component {
 
@@ -11,14 +11,14 @@ export default class Menu extends Component {
           <IndexLink
             activeClassName='Menu-link--active'
             className='Menu-link'
-            to={ routeCodes.ITEMS }
+            to={routeCodes.ITEMS}
           >
             Catalog
           </IndexLink>
           <Link
             activeClassName='Menu-link--active'
             className='Menu-link'
-            to={ routeCodes.CHANGE_LOG}
+            to={routeCodes.CHANGE_LOG}
           >
             Changelog
           </Link>
