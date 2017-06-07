@@ -16,7 +16,14 @@ export default class Items extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     const urlQuery = browserHistory.getCurrentLocation().query;
-    const page = urlQuery.page ? Number(urlQuery.page) - 1 : 0;
+    let page;
+    if (urlQuery.page) {
+      page = Number(urlQuery.page) - 1;
+    } else if (localStorage.getItem('page')) {
+      page = Number(localStorage.getItem('page'));
+    } else {
+      page = 0;
+    }
 
     dispatch(setPage(page));
   }

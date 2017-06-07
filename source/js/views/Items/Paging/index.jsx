@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 import { setPage } from 'actions/items';
 
 @connect(state => ({
@@ -42,9 +41,6 @@ export default class Paging extends Component {
 
   handleChangePage(page) {
     const { dispatch } = this.props;
-    const location = Object.assign({}, browserHistory.getCurrentLocation());
-    Object.assign(location.query, {page: page + 1});
-    browserHistory.push(location);
     dispatch(setPage(page));
   }
 

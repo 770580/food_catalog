@@ -1,4 +1,5 @@
 import 'isomorphic-fetch';
+import { browserHistory } from 'react-router';
 
 export const LIST_ASYNC_ACTION_START = 'LIST_ASYNC_ACTION_START';
 export const LIST_ASYNC_ACTION_ERROR = 'LIST_ASYNC_ACTION_ERROR';
@@ -58,6 +59,11 @@ export function setPage(page) {
   return (dispatch, getState) => {
     const state = getState().items;
     const transitionName = state.get('page') > page ? 'ListNextPage' : 'ListPrevPage';
+    const location = Object.assign({}, browserHistory.getCurrentLocation());
+    Object.assign(location.query, { page: page + 1 });
+    browserHistory.push(location);
+    localStorage.setItem('page', page);
+
     dispatch({
       type: SET_PAGE_ACTION,
       page,
