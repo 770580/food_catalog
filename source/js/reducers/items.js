@@ -12,7 +12,7 @@ import {
 
 const initialState = Map({
   list: [],
-  page: 0,
+  page: null,
   count: 5,
   pending: false,
   asyncError: null,

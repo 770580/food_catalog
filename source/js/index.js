@@ -12,10 +12,10 @@ import Routes from 'routes';
 // Load SCSS
 import '../scss/app.scss';
 
-
+// Previous local session clean up
 localStorage.removeItem('page');
-const isProduction = process.env.NODE_ENV === 'production';
 
+const isProduction = process.env.NODE_ENV === 'production';
 
 // Creating store
 let store = null;

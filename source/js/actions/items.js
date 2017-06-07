@@ -55,14 +55,24 @@ export function getItemsAsync() {
   };
 }
 
+function setPageToURL(page) {
+  const location = browserHistory.getCurrentLocation();
+  location.query.page = page + 1;
+  browserHistory.push(location);
+}
+
 export function setPage(page) {
   return (dispatch, getState) => {
-    const state = getState().items;
-    const transitionName = state.get('page') > page ? 'ListNextPage' : 'ListPrevPage';
-    const location = Object.assign({}, browserHistory.getCurrentLocation());
-    Object.assign(location.query, { page: page + 1 });
-    browserHistory.push(location);
+    setPageToURL(page);
     localStorage.setItem('page', page);
+
+    const prevPage = getState().items.get('page');
+    if (prevPage === page) {
+      return;
+    }
+
+    const transitionName = prevPage === null ? '' :
+      (prevPage > page ? 'ListNextPage' : 'ListPrevPage');
 
     dispatch({
       type: SET_PAGE_ACTION,
@@ -75,6 +85,8 @@ export function setPage(page) {
 
 export function setSort(sortBy, sortDir) {
   return (dispatch) => {
+    setPageToURL(0);
+    localStorage.setItem('page', 0);
     dispatch({
       type: SET_SORT_ACTION,
       sortBy,
@@ -96,6 +108,8 @@ export function onPriceFilterInputChanged(priceFrom, priceTo) {
 
 export function setFilter(priceFrom, priceTo) {
   return (dispatch) => {
+    setPageToURL(0);
+    localStorage.setItem('page', 0);
     dispatch({
       type: SET_FILTER_ACTION,
       priceFrom,

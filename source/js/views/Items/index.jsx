@@ -15,16 +15,10 @@ import PagingButton from './PagingButton';
 export default class Items extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
-    const urlQuery = browserHistory.getCurrentLocation().query;
-    let page;
-    if (urlQuery.page) {
-      page = Number(urlQuery.page) - 1;
-    } else if (localStorage.getItem('page')) {
-      page = Number(localStorage.getItem('page'));
-    } else {
-      page = 0;
-    }
-
+    let urlPage = Number(browserHistory.getCurrentLocation().query.page);
+    urlPage = urlPage ? urlPage - 1 : 0;
+    const lsPage = Number(localStorage.getItem('page'));
+    const page = urlPage || lsPage || 0;
     dispatch(setPage(page));
   }
 
