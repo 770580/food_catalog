@@ -8,7 +8,7 @@ import { setPage } from 'actions/items';
   count: state.items.get('count'),
 }))
 
-export default class PagingButton extends Component {
+export default class CarouselButton extends Component {
   constructor() {
     super();
     this.handleChangePage = this.handleChangePage.bind(this);

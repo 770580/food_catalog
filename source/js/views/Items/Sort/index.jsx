@@ -41,14 +41,14 @@ export default class Sort extends Component {
     const { sortBy, sortDir } = this.props;
     return (
       <div className='Sort'>
-        <span className='Sort__title'>Сортировка:</span>
+        <span className='Sort__title'>Sorting:</span>
         <a
           className={
             'Sort__link' + this.calculateArrowStyle('name')
           }
           onClick={() => this.handleSortList('name')}
         >
-          По названию
+          By name
         </a>
         <a
           className={
@@ -56,7 +56,7 @@ export default class Sort extends Component {
           }
           onClick={() => this.handleSortList('price')}
         >
-          По цене
+          By price
         </a>
         <a
           className={
@@ -64,7 +64,7 @@ export default class Sort extends Component {
           }
           onClick={() => this.handleSortList('raiting')}
         >
-          По рейтингу
+          By raiting
         </a>
       </div>
     );

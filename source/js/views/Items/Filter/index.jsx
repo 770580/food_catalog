@@ -41,7 +41,7 @@ export default class Filter extends Component {
     const { priceFrom, priceTo } = this.props;
     return (
       <div className='Filter'>
-        <span className='Filter__title'>Цена:</span>
+        <span className='Filter__title'>Price:</span>
         <form onSubmit={this.handleSubmit}>
           <input
             type='text'

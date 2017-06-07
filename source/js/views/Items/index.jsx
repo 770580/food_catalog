@@ -6,7 +6,7 @@ import List from './List';
 import Paging from './Paging';
 import Sort from './Sort';
 import Filter from './Filter';
-import PagingButton from './PagingButton';
+import CarouselButton from './CarouselButton';
 
 @connect(state => ({
   total: state.items.get('total'),
@@ -29,9 +29,9 @@ export default class Items extends Component {
         <Sort />
         <Filter />
         <div className='Items__carousel'>
-          <PagingButton nextPage='prev' />
+          <CarouselButton nextPage='prev' />
           <List />
-          <PagingButton nextPage='next' />
+          <CarouselButton nextPage='next' />
         </div>
         {total > 0 &&
           <Paging />
