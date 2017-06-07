@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getItemsAsync } from 'actions/items';
+import { browserHistory } from 'react-router';
+import { setPage } from 'actions/items';
 import List from './List';
 import Paging from './Paging';
 import Sort from './Sort';
@@ -14,7 +15,10 @@ import PagingButton from './PagingButton';
 export default class Items extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(getItemsAsync());
+    const urlQuery = browserHistory.getCurrentLocation().query;
+    const page = urlQuery.page ? Number(urlQuery.page) - 1 : 0;
+
+    dispatch(setPage(page));
   }
 
   render() {
