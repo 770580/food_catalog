@@ -55,16 +55,16 @@ export function getItemsAsync() {
   };
 }
 
-function setPageToURL(page) {
+function persistPage(page) {
   const location = browserHistory.getCurrentLocation();
   location.query.page = page + 1;
   browserHistory.push(location);
+  localStorage.setItem('page', page);
 }
 
 export function setPage(page) {
   return (dispatch, getState) => {
-    setPageToURL(page);
-    localStorage.setItem('page', page);
+    persistPage(page);
 
     const prevPage = getState().items.get('page');
     if (prevPage === page) {
@@ -85,8 +85,7 @@ export function setPage(page) {
 
 export function setSort(sortBy, sortDir) {
   return (dispatch) => {
-    setPageToURL(0);
-    localStorage.setItem('page', 0);
+    persistPage(0);
     dispatch({
       type: SET_SORT_ACTION,
       sortBy,
@@ -108,8 +107,7 @@ export function onPriceFilterInputChanged(priceFrom, priceTo) {
 
 export function setFilter(priceFrom, priceTo) {
   return (dispatch) => {
-    setPageToURL(0);
-    localStorage.setItem('page', 0);
+    persistPage(0);
     dispatch({
       type: SET_FILTER_ACTION,
       priceFrom,
